@@ -24,7 +24,7 @@ class DetailsMovies extends StatelessWidget {
             Stack(
               children: [
                 Image.network(
-                  "https://image.tmdb.org/t/p/w500${movie.backdropPath!}",
+                  "https://image.tmdb.org/t/p/w500${movie.backdropPath ?? movie.posterPath}",
                   height: MediaQuery.of(context).size.height / 2,
                   width: double.infinity,
                   fit: BoxFit.fill,
@@ -135,7 +135,15 @@ class DetailsMovies extends StatelessWidget {
                       //                     "https://www.youtube.com/watch?v=${snapshot.data!.results![0].key}}",
                       //                     style: const TextStyle(color: Colors.white),
                       //                   )
-                      : const SizedBox();
+                      : Container(
+                          child: const Text(
+                            "Ops there is No Trailer",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                            ),
+                          ),
+                        );
                 } else {
                   return const Text(
                     'eror',

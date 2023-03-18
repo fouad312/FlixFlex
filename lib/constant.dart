@@ -1,3 +1,6 @@
+import 'package:fixflex/Athentification/Client.dart';
+import 'package:fixflex/Models/TvShow.dart';
+import 'package:fixflex/Models/movies.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -20,6 +23,10 @@ Widget backbutton(BuildContext context, Color color) {
       ));
 }
 
+List<ResultsMovie> searchMovies = [];
+List<ResultsTvShow> searchTvShow = [];
+Client? client;
+
 extension EmptyPadding on num {
   SizedBox get h => SizedBox(
         height: toDouble(),
@@ -27,4 +34,30 @@ extension EmptyPadding on num {
   SizedBox get w => SizedBox(
         width: toDouble(),
       );
+}
+
+alert(
+  BuildContext context,
+  String myTitle,
+  String myContent,
+) {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          elevation: 10,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          title: Text(myTitle),
+          content: Text(myContent),
+          actions: <Widget>[
+            RawMaterialButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Exit'))
+          ],
+        );
+      });
 }
